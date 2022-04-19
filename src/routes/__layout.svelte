@@ -1,3 +1,9 @@
+<slot></slot>
+
+
+<!---
+
+
 
 <script>
     import '../styles/global.css'; 
@@ -48,7 +54,7 @@
         </div>
     </div>
     <div class="middle">  
-        
+
     <slot>
                 
     </slot>
@@ -71,3 +77,5 @@
     </div>
     
 </div>
+
+-->
