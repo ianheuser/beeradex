@@ -1,0 +1,160 @@
+:root {
+    --budweiser: #D02030;
+    --budweiser-light: #FFEBED;
+}
+
+body {
+    font-family: Futura, 'Helvetica Neu',Helvetica,Arial,sans-serif
+}
+
+#main {
+    position: relative;
+    width: 1268px;
+    max-width:1268px;
+    margin:auto;
+}
+
+.brands {
+    width: 100%;
+    position:absolute;
+    background-color: var(--budweiser);
+    z-index: 500;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 30px;
+    transform: translate(-0%, -100%);
+    transition: all 1s;
+}
+
+.openMenu {
+    transform: translate(-0%, -0%)
+}
+
+.brand {
+    /* border: #696969 1px solid; */
+    max-width: 150px;
+   /* display: flex;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 5px;*/
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 17px;
+    object-fit: cover;
+}
+
+.brandLogo {
+    box-sizing: border-box; 
+    display: flex; 
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.primary {
+    background-color: var(--budweiser);
+}
+
+.secondary {
+    background-color: var(--budweiser-light);
+}
+
+.top .primary {
+    height: 13px;
+    min-height: 13px;
+    position: relative;
+    width: 100%;
+}
+
+.veryBottom.primary {
+    height: 13px;
+    min-height: 13px;
+    position: relative;
+    width: 100%;
+}
+
+.header.secondary {
+    min-height: 130px;
+    height: 130px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.products.secondary {
+    min-height: 130px;
+    height: 130px;
+    position: relative;
+    width: 100%;
+}
+
+.logo {
+    padding: 10px 30px;
+    max-height: 90%;
+
+}
+
+.switchBrands {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    cursor: pointer;
+    padding: 20px 30px;
+    z-index: 700;
+}
+
+.switchBrands span {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--budweiser);
+    padding-right: 20px;
+}
+
+.switchBrands:hover {
+    opacity: .7;
+}
+
+.brandIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.middle {
+    height: 500px;
+}
+
+
+.productLinks{
+    position: relative;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productLink {
+    padding: 5px 20px;
+    position: relative;
+    height: 40px;
+    background: #FFFFFF;
+    border: 0.5px solid #9F9F9F;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin: 30px 5px;
+}
+
+.productLink:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+.productLink.current {
+    color: var(--budweiser);
+    border-color: var(--budweiser);
+}
+

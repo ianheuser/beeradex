@@ -1,7 +1,6 @@
 <script>
     import * as contentful from "contentful"
     import { onMount } from 'svelte';
-import { loop_guard } from "svelte/internal";
 
     let allBrands = [];
 
@@ -31,11 +30,13 @@ import { loop_guard } from "svelte/internal";
 
     <div class="brands">
 
-        {#each allBrands as oneBrand }
+        {#each allBrands as singleBrand }
             <div class="brand">
-               {#if oneBrand.fields.logo.fields.file.url }
-                    <img class="logo" src={oneBrand.fields.logo.fields.file.url} alt={ "The logo for " + oneBrand.fields.name } />
-               {/if}
+               {#if singleBrand.fields.logo.fields.file.url }
+                    <img class="logo" src={singleBrand.fields.logo.fields.file.url} alt={ "The logo for " + singleBrand.fields.name } />
+               
+               
+                {/if}
             </div>
             
         {/each}
