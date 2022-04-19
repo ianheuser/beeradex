@@ -47,7 +47,12 @@
             </div>
         </div>
     </div>
-    <div class="middle">
+    <div class="middle">  
+        
+    <slot>
+                
+    </slot>
+
     </div>
     <div class="bottom">
         <div class="products secondary">
