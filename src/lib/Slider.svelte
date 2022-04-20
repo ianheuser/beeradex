@@ -1,60 +1,10 @@
 
 <script>
-    import '../styles/global.css'; 
-    import * as contentful from "contentful"
-    import { onMount } from 'svelte';
-    /// import Slider from '$lib/Slider.svelte';
+	/*
+import { slide } from "svelte/types/runtime/transition";
+*/
 
-    let allBrands = [];
-    let menuState = 'closed';
-    let products = [];
-
-    onMount(async() => {
-
-        let $switchBrand =  document.querySelector('.switchBrands');
-        let $brandMenu =  document.querySelector('.brands');
-
-        $switchBrand.addEventListener('click', function(){
-            if(menuState=='closed'){
-                $brandMenu.classList.add('openMenu');
-                console.log('CLOSED');
-                menuState = 'open';
-            } else {
-                $brandMenu.classList.remove('openMenu');
-                console.log('OPEN');
-                menuState = 'closed';
-            }
-        });
-
-        const client = contentful.createClient({
-            space: "3q892y4ckspg",
-            accessToken: "w_ghIFLSyjNtCW4BdthHMn8WH21jXSC54suwYdXvxxQ",
-            environment: "master"
-        });
-
-        client.getEntries({
-            content_type: "brand"
-        }).then(response => {
-            allBrands = response.items;
-        }).catch(error => {
-            console.log("Error in Brand Pull back");
-            console.dir(error);
-        });
-
-        client.getEntries({
-            content_type: "product",
-            "fields.brand.sys.id": "2CVZpj6Pglkkylk8xOjBhw",
-            "fields.type" : "Beer"
-        }).then(response => {
-            products = response.items;
-            console.log('THE PRODUCTS:')
-            console.dir(products)
-        }).catch(error => {
-            console.log("Error in Product pull");
-            console.dir(error);
-        });
-
-    });
+	export const products = [];
 
 	let slides = [
 		{ title: 'BUDWEISER', text: 'Budweiser is a medium-bodied, flavorful, crisp American-style lager. Brewed with the best barley malt and a blend of premium hop varieties.', t1a:'ALC %', t1b:'CAL', t1c:'FAT', t1d:'CARBS',t2a:'5', t2b:'145', t2c:"0",t2d:'10.6', t3a:'BY VOL', t3b:'PER 12 OZ', t3c:'PER 12 OZ',t3d:'PER 8 OZ', image:'https://us.budweiser.com/img/home/desktop/02_Iconic_12ozBottle_T_529x654.png' },
@@ -70,6 +20,7 @@
 	}
 	
 	const clamp = (number, min, max) => Math.min(Math.max(number, min), max);
+	
 	/*
 	const transition_args = {
 		duration: 200,
@@ -100,29 +51,8 @@
 
 </script>
 
-
 <svelte:window on:keyup={handleShortcut} />
-<section id="main">
-    <div class="brands">
-        {#each allBrands as oneBrand }
-            <div class="brand">
-               {#if oneBrand.fields.logo.fields.file.url }
-                    <img class="brandLogo" src={oneBrand.fields.logo.fields.file.url} alt={ "The logo for " + oneBrand.fields.name } />
-               {/if}
-            </div>
-        {/each}
-    </div>
-    <div class="top">
-        <div class="primary"></div>
-        <div class="header secondary">
-            <img class="logo" src="./img/logos/our-beers/Budweiser.png" alt="The logo for Budweiser" />
-            <div class="switchBrands">
-                <span>Switch Brands</span>
-                <img class="brandIcon" src="./img/menu.png" alt="Menu icon" />
-            </div>
-        </div>
-    </div>
-   
+
 <div class="extra-outer-wrapper">
 	<div class="outer-wrapper">
 		<div class="inner-wrapper">
@@ -173,30 +103,207 @@
 		</div>
 	</div>
 </div>
-
+<!---
+<div class="dots">
+	{#each slides as slide, i}
+		<button on:click={()=>changeSlide(i)} class="dot" class:selected={cur == i}>{i+1}</button>
+	{/each}
+</div>
+-->
 <div class="bottom">
 	<div class="products secondary">
 		<div class="productLinks">
-			<div class="productLinks">
-                <!--
-                <button class="productLink current" href="www.budweiser.com">Budweiser</button>
-                <button class="productLink" href="www.budweiser.com">Select</button>
-                <button class="productLink" href="www.budweiser.com">Select 55</button>
-                <button class="productLink" href="www.budweiser.com">Zero</button>
-                <button class="productLink" href="www.budweiser.com">Chelada</button>
-                <button class="productLink" href="www.budweiser.com">Supreme</button>
-                    -->
-                {#each slides as slide, i}
-                    <button on:click={()=>changeSlide(i)} class="productLink" class:current={cur == i}>{slide.title}</button>
-                {/each}
-            </div>
+			<!--
+			<button class="productLink current" href="www.budweiser.com">Budweiser</button>
+			<button class="productLink" href="www.budweiser.com">Select</button>
+			<button class="productLink" href="www.budweiser.com">Select 55</button>
+			<button class="productLink" href="www.budweiser.com">Zero</button>
+			<button class="productLink" href="www.budweiser.com">Chelada</button>
+			<button class="productLink" href="www.budweiser.com">Supreme</button>
+				-->
+
 		</div>
 	</div>
 	<div class="veryBottom primary">
 		
 	</div>
 </div>
+<style>
+	/*
+	:global(html) {
+		font-size: 62.5%;
+	}
+	
+	:global(body) {
+		font-size: 1.4rem;
+	}
+
+	button {
+		background: transparent;
+		color: #000000;
+		border-color: transparent;
+		width: 3.2rem;
+		height: 3.2rem;
+	}
+	
+	button:hover,
+	button:focus{
+		background: rgba(0,0,0,0.5);
+	}
+	
+	.dots {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 8px;
+	}
+	
+	.dot {
+		width: 8px;
+		height: 8px;
+		background: #000;
+		border-radius: 100%;
+		font-size: 0;
+		margin: 0.3rem;
+		opacity: 0.3;
+	}
+	
+	.dot.selected {
+		opacity: 1;
+	}*/
+
+	.extra-outer-wrapper {
+		width: 100%;
+
+		
+	}
+
+	.outer-wrapper {
+		width: 100%;
+		padding: 0 0 56.25%;
+		position: relative;
+        margin: auto;
+	}
+	
+	.inner-wrapper {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		position: absolute;
+        align-items: center;
+        justify-content: center;
+     
+       
+	}
+
+	.controls button:first-child {
+		position: absolute;
+		left: 0;
+		top: calc(50% - 1.2rem);
+	}
+	
+	.controls button:last-child {
+		position: absolute;
+		right: 0;
+		top: calc(50% - 1.2rem);
+	}
+/*	
+	.slide {
+		flex: 1 0 auto;
+		width: 100%;
+		height: 100%;
+		background: red;
+	  align-items: center;
+		justify-content: center;
+		display: flex;
+		text-align: center;
+		font-weight: bold;
+		font-size: 2rem;
+		color: white;
+	}
+
+    */
+	
+	.controls {
+		text-align: center;
+		width: 100%;
+		display: block;
+	}
+
+    /* Slide Content */
+
+
     
+
+.slide {
     
+    display: flex;
+    width: 85%;
+    flex: 1 0 auto;
+    height: 100%;
+    padding-left: 80px;
     
-</section>
+   
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    padding-top: 160px;
+}
+
+.text {
+    font-family: 'Roboto', sans-serif;
+    color: gray;
+    padding-top: 20px;
+    line-height: 2.5;
+}
+
+.spec-content {
+    display: flex;
+}
+.box {
+    margin-right: 50px;
+    text-align: center;
+}
+
+.box-spec, .box-text {
+    color: gray;
+}
+
+
+.productLinks{
+    position: relative;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productLink {
+    padding: 5px 20px;
+    position: relative;
+    height: 40px;
+    background: #FFFFFF;
+    border: 0.5px solid #9F9F9F;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin: 30px 5px;
+}
+
+.productLink:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+button {
+	cursor: pointer;
+}
+.productLink.current {
+    color:#D02030;
+    border-color:#D02030;
+}
+
+
+/* Slide Content End */
+</style>
