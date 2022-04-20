@@ -1,10 +1,19 @@
+
+
+/* Import fonts
+    Josefin Sans - 100-700 and their relative italic
+    Josefin Slab - 100 - 700 and their relative italic
+    PT SErif - 800
+    */
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=PT+Serif:wght@700&display=swap');
 :root {
     --budweiser: #D02030;
     --budweiser-light: #FFEBED;
 }
 
+
 body {
-    font-family: Futura, 'Helvetica Neu',Helvetica,Arial,sans-serif
+    font-family: 'Josefin Sans', Futura, 'Helvetica Neu',Helvetica,Arial,sans-serif
 }
 
 #main {
@@ -26,7 +35,7 @@ body {
     box-sizing: border-box;
     padding: 30px;
     transform: translate(-0%, -100%);
-    transition: all 1s;
+    transition: all .3s ease-in-out;
 }
 
 .openMenu {
@@ -73,6 +82,12 @@ body {
     min-height: 13px;
     position: relative;
     width: 100%;
+}
+
+.productImage {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
 }
 
 .header.secondary {
@@ -269,27 +284,34 @@ body {
     display: flex;
     width: 85%;
     flex: 1 0 auto;
-    height: 100%;
-    padding-left: 80px;
-    
-   
+    align-items: center;
+    gap: 80px;
+}
+
+.text-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
 }
 
 .title {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Josefin Sans','Oswald', 'Roboto', sans-serif;
     font-weight: 700;
-    padding-top: 160px;
+    font-size: 48px;
+    text-transform: uppercase;
 }
 
 .text {
-    font-family: 'Roboto', sans-serif;
-    color: gray;
-    padding-top: 20px;
-    line-height: 2.5;
+    font-family: 'Josefin Sans', 'Roboto', sans-serif;
+    color: #424242;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.5;
 }
 
 .spec-content {
     display: flex;
+    justify-content: space-between;
 }
 .box {
     margin-right: 50px;
@@ -297,9 +319,22 @@ body {
 }
 
 .box-spec, .box-text {
-    color: gray;
+    color: rgb(65, 65, 65);
 }
 
+.box h1 {
+    font-size: 48px;
+}
+.nextAndBack {
+    background-color: var(--budweiser-light);
+    color: var(--budweiser);
+    font-size: 48px;
+    height: 75px;
+    width: 65px;
+    font-family: 'Josefin', 'Josefin Sans';
+    font-weight:700;
+    border: none;
+}
 
 .productLinks{
     position: relative;

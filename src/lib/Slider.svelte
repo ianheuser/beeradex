@@ -121,7 +121,9 @@ import { slide } from "svelte/types/runtime/transition";
 			<button class="productLink" href="www.budweiser.com">Chelada</button>
 			<button class="productLink" href="www.budweiser.com">Supreme</button>
 				-->
-
+			{#each slides as slide, i}
+				<button on:click={()=>changeSlide(i)} class="productLink" class:current={cur == i}>{slide.title}</button>
+			{/each}
 		</div>
 	</div>
 	<div class="veryBottom primary">

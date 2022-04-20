@@ -1,20 +1,29 @@
 
 <script>
+    /// Import global css styles, the contentful library to bring our data in, and the onMount function from svelte
     import '../styles/global.css'; 
     import * as contentful from "contentful"
     import { onMount } from 'svelte';
     /// import Slider from '$lib/Slider.svelte';
 
+    /// create variables to store brands, products of the current brand, and the state of the menu (open or closed)
     let allBrands = [];
     let menuState = 'closed';
     let products = [];
 
+    // onMount svelte function runs once the component or page in question has mounted (similar to onLoad or document.ready() )
     onMount(async() => {
 
+        // select and store the "switch brands" button and the brands menu, to create the brand menu functionality 
+        // personal choice, I like to use dollar signs as 1st character of any variable name that stores a dom element
         let $switchBrand =  document.querySelector('.switchBrands');
         let $brandMenu =  document.querySelector('.brands');
 
+        //add click event listener to the "switch brands" button
         $switchBrand.addEventListener('click', function(){
+            //Check if the menu is open or closed and then add or remove the class .openMenu
+            //If the menu has a class of .openMenu, our css rules dictates that it is positioned on screen
+            //If it doesn't, it's positioned off screen
             if(menuState=='closed'){
                 $brandMenu.classList.add('openMenu');
                 console.log('CLOSED');
@@ -26,12 +35,14 @@
             }
         });
 
+        //Connect to our contentful account data, store the connection in the variable "client"
         const client = contentful.createClient({
             space: "3q892y4ckspg",
             accessToken: "w_ghIFLSyjNtCW4BdthHMn8WH21jXSC54suwYdXvxxQ",
             environment: "master"
         });
 
+        //use contentful client and getEntries method to bring back all the brands
         client.getEntries({
             content_type: "brand"
         }).then(response => {
@@ -41,6 +52,7 @@
             console.dir(error);
         });
 
+        //use contentful client and getEntries method to bring back all the products
         client.getEntries({
             content_type: "product",
             "fields.brand.sys.id": "2CVZpj6Pglkkylk8xOjBhw",
@@ -63,6 +75,7 @@
 		
 	]
 	
+    //current slide variable
 	let cur = 0;
 	
 	function changeSlide(slide) {
@@ -70,6 +83,7 @@
 	}
 	
 	const clamp = (number, min, max) => Math.min(Math.max(number, min), max);
+
 	/*
 	const transition_args = {
 		duration: 200,
@@ -129,6 +143,10 @@
 			{#each slides as slide, id}
 				{#if id === cur}
 				<div class="slide">
+                    
+                    <button class="nextAndBack" on:click="{()=>prev()}">
+                        &lt;
+                    </button>
 					<div class="text-content">
 						<h1 class="title">{slide.title}</h1>
 						<p class="text">{slide.text}</p>
@@ -156,20 +174,18 @@
 							</div>
 						</div>
 					</div>
-					<div class="image">
+					<div class="productImage">
 						<img src="{slide.image}" alt="">
 					</div>
+                    <button class="nextAndBack" on:click="{()=>next()}">
+                        &gt;
+                    </button>
 				</div>
 				{/if}
 			{/each}
-			<div class="controls">
-				<button on:click="{()=>prev()}">
-					&lt;
-				</button>
-				<button on:click="{()=>next()}">
-					&gt;
-				</button>
-			</div>
+			
+			
+			
 		</div>
 	</div>
 </div>
