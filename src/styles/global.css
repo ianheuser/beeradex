@@ -13,7 +13,8 @@
 
 
 body {
-    font-family: 'Josefin Sans', Futura, 'Helvetica Neu',Helvetica,Arial,sans-serif
+    font-family: 'Josefin Sans', Futura, 'Helvetica Neu',Helvetica,Arial,sans-serif;
+    overflow: hidden;
 }
 
 #main {
@@ -21,6 +22,7 @@ body {
     width: 1268px;
     max-width:1268px;
     margin:auto;
+    overflow: hidden;
 }
 
 .brands {
@@ -77,6 +79,25 @@ body {
     width: 100%;
 }
 
+.top {
+    transform: translate(0px, -140px);
+    transition: all .2s ease-out;
+}
+
+.bottom {
+    transform: translate(0px, +140px);
+    transition: all .2s ease-out;
+}
+
+.open {
+    transform: translate(0px, 0px);
+    transition: all .2s ease-out;
+}
+
+
+
+
+
 .veryBottom.primary {
     height: 13px;
     min-height: 13px;
@@ -84,11 +105,6 @@ body {
     width: 100%;
 }
 
-.productImage {
-    max-width: 250px;
-    display: flex;
-    justify-content: center;
-}
 
 .header.secondary {
     min-height: 130px;
@@ -236,7 +252,7 @@ body {
 		position: absolute;
         align-items: center;
         justify-content: center;
-     
+        gap: 40px;
        
 	}
 
@@ -280,18 +296,12 @@ body {
     
 
 .slide {
-    
     display: flex;
     width: 85%;
     flex: 1 0 auto;
     align-items: center;
     gap: 80px;
-}
-
-.text-content {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+    padding: 0px 120px;
 }
 
 .title {
@@ -367,3 +377,40 @@ button {
     color:#D02030;
     border-color:#D02030;
 }
+
+
+.text-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    animation: textMe 0.2s ease-out;
+}
+
+.productImage {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    animation: slideMe 0.2s ease-out; 
+}
+
+.next {
+    position: absolute;
+    right: 0px;
+    animation: slideMe 0.2s ease-out; 
+}
+
+.back {
+    position: absolute;
+    left: 0px;
+    animation: textMe 0.2s ease-out;
+}
+
+@keyframes slideMe {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% {transform: translateX(0px); }
+}
+
+
+@keyframes textMe {0% {opacity: 0; transform: translateX(-100px);}100% {opacity: 1;}}
+
+@keyframes backAndNext {0% {opacity: 0;} 100% {opacity: 1; }}

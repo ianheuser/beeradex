@@ -1,6 +1,7 @@
 
 <script>
     /// Import global css styles, the contentful library to bring our data in, and the onMount function from svelte
+    import {gsap} from "gsap"
     import '../styles/global.css'; 
     import * as contentful from "contentful"
     import { onMount } from 'svelte';
@@ -13,6 +14,9 @@
 
     // onMount svelte function runs once the component or page in question has mounted (similar to onLoad or document.ready() )
     onMount(async() => {
+            
+        document.querySelector('.top').classList.add('open');
+        document.querySelector('.bottom').classList.add('open');
 
         // select and store the "switch brands" button and the brands menu, to create the brand menu functionality 
         // personal choice, I like to use dollar signs as 1st character of any variable name that stores a dom element
@@ -65,8 +69,21 @@
             console.log("Error in Product pull");
             console.dir(error);
         });
+/*
+        const tl = gsap.timeline();
+        const duration = 1;
 
-        
+        tl.from('.bottom', {
+            duration,
+            y: +500,
+            ease: 'out',
+        })
+        .from('.top', {
+            duration,
+            y: -500,
+            ease: 'out',
+        }, `-=${duration * 0.75}`)
+*/
     });
 
 	/*
@@ -142,13 +159,15 @@
 <div class="extra-outer-wrapper">
 	<div class="outer-wrapper">
 		<div class="inner-wrapper">
+            
+            <button class="nextAndBack back" on:click="{()=>prev()}">
+                &lt;
+            </button>
+                   
 			{#each products as product, id}
 				{#if id === cur}
-				<div class="slide">
                     
-                    <button class="nextAndBack" on:click="{()=>prev()}">
-                        &lt;
-                    </button>
+			<div class="slide">
 					<div class="text-content">
 						<h1 class="title">{product.fields.name}</h1>
 						<p class="text">{product.fields.extendedBlurb}</p>
@@ -179,15 +198,16 @@
 					<div class="productImage">
 						<img src="{product.fields.profileImage.fields.file.url}" alt="">
 					</div>
-                    <button class="nextAndBack" on:click="{()=>next()}">
-                        &gt;
-                    </button>
+                    
+                    
 				</div>
 				{/if}
 			{/each}
+            <button class="nextAndBack next" on:click="{()=>next()}">
+                &gt;
+            </button>
 			
-			
-			
+	
 		</div>
 	</div>
 </div>
