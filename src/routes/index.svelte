@@ -1,7 +1,7 @@
 
 <script>
     /// Import global css styles, the contentful library to bring our data in, and the onMount function from svelte
-    import {gsap} from "gsap"
+    ///import {gsap} from "gsap"
     import '../styles/global.css'; 
     import * as contentful from "contentful"
     import { onMount } from 'svelte';
@@ -21,22 +21,15 @@
         // select and store the "switch brands" button and the brands menu, to create the brand menu functionality 
         // personal choice, I like to use dollar signs as 1st character of any variable name that stores a dom element
         let $switchBrand =  document.querySelector('.switchBrands');
+        let $closeBrands =  document.querySelector('.closeButton');
         let $brandMenu =  document.querySelector('.brands');
 
         //add click event listener to the "switch brands" button
         $switchBrand.addEventListener('click', function(){
-            //Check if the menu is open or closed and then add or remove the class .openMenu
-            //If the menu has a class of .openMenu, our css rules dictates that it is positioned on screen
-            //If it doesn't, it's positioned off screen
-            if(menuState=='closed'){
                 $brandMenu.classList.add('openMenu');
-                console.log('CLOSED');
-                menuState = 'open';
-            } else {
+        });
+        $closeBrands.addEventListener('click', function(){
                 $brandMenu.classList.remove('openMenu');
-                console.log('OPEN');
-                menuState = 'closed';
-            }
         });
 
         //Connect to our contentful account data, store the connection in the variable "client"
@@ -144,6 +137,7 @@
                {/if}
             </div>
         {/each}
+        <img src="./img/closeButton.png" width="30" height="30" alt="Close menu icon" class="closeButton" />
     </div>
     <div class="top">
         <div class="primary"></div>
