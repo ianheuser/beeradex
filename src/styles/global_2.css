@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Josefin+Slab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=PT+Serif:wght@700&display=swap');
+
+:root {
+    --budweiser: #D02030;
+    --budweiser-light: #FFEBED;
+    --budweiser-1: #91000c;
+    --budweiser-2: #ff0015;
+    --budweiser-3: #c42330;
+}
+
+body {
+    font-family: 'Josefin Sans', Futura, 'Helvetica Neu',Helvetica,Arial,sans-serif;
+    overflow: hidden;
+}
+
+#main {
+    position: relative;
+    width: 1300px;
+    height: 1500px;
+    overflow: none;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.belly {
+    display: flex;
+}
+
+.ribbon {
+    height: 10px;
+    width: 100%;
+    background: rgb(255,13,13);
+    background: linear-gradient(90deg, var(--budweiser) 0%,var(--budweiser-1) 29%,var(--budweiser-2) 50%, var(--budweiser-3) 75%, var(--budweiser) 100%);
+    background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+.ribbon.top {
+    position: relative;
+}
+
+.ribbon.bottom {
+    position: relative;
+}
+
+.left {
+    position: relative;
+    display: flex;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    flex-direction: column;
+    border-right: #B5B5B1 1px solid;
+    background-color: white;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 14px 0px 20px 0px rgb(255 80 80 / 15%);
+    border-left: #B5B5B1 1px solid;
+    overflow: hidden;
+}
+
+
+
+
+.logoHolder {
+    position: relative;
+    margin: 0px auto;
+    width: 275px;
+    height: 150px;
+    box-shadow: 0px 13px 13px -17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 500;
+}
+
+@keyframes lowerProducts {
+    0% { transform: translate(0px, -900px); }
+    100% { transform: translate(0px,0px); }
+}
+
+.logo {
+    max-width: 200px;
+    position: relative;
+    margin: auto;
+}
+
+.productLinks{
+    position: relative;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 50px;
+    animation: lowerProducts  0.75s ease-out;
+}
+
+.productLink {
+    padding: 5px 20px;
+    position: relative;
+    width: 240px;
+    background: #FFFFFF;
+    border: 0.5px solid #e0e0e0;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-size: 15px;
+    height: 50px;
+    font-weight: 600;
+    font-family: "Josefin Sans";
+}
+
+.productLink:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+.productLink.current {
+    color:#D02030;
+    border-color:#D02030;
+}
+
+.right {
+    position: relative;
+    overflow: hidden;
+    border-right: #B5B5B1 1px solid;
+}
+
+.brand {
+    display: flex;
+    
+}
+
+.brandsMask {
+    width: 1000px;
+    height: 150px;
+    background-color:rgb(243, 243, 243);
+    overflow: hidden;
+    
+}
+
+.brands {
+    display: flex;
+    gap: 50px;
+    height: 150px;
+    align-items: center;
+}
+
+.brandLogo {
+    height: 100px;
+    filter: grayscale(100%) opacity(20%);
+}
+
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.slide {
+    display: flex;
+    width: 85%;
+    flex: 1 0 auto;
+    align-items: center;
+    gap: 80px;
+    padding: 0px 75px;
+    height: 700px;
+}
+
+.title {
+    font-family: 'Josefin Sans','Oswald', 'Roboto', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    text-transform: uppercase;
+    padding: 0px;
+    margin: 0px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.text {
+    font-family: 'Josefin Sans', 'Roboto', sans-serif;
+    color: #b5b5b1;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+.spec-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    margin-right: 50px;
+    text-align: center;
+}
+
+.box-spec, .box-text {
+    color: rgb(65, 65, 65);
+}
+
+.box h1 {
+    font-size: 48px;
+}
+
+
+
+
+
+
+
+.text-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    animation: textMe 0.75s ease-out;
+}
+
+.productImage {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    animation: slideMe 0.75s ease-out;
+    overflow: hidden;
+    height: 550px;
+}
+
+@keyframes slideMe {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% {transform: translateX(0px); }
+}
+
+@keyframes textMe {0% {opacity: 0; transform: translateX(-100px);}100% {opacity: 1;}}
+
+@keyframes backAndNext {0% {opacity: 0;} 100% {opacity: 1; }}
